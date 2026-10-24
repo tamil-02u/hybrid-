@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Book Storage Slot – SmartHarvest</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/booking.css"/>
+</head>
+<body class="booking-page">
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" id="navbar">
+  <a class="navbar-logo" href="index.html">🌾 Smart<span>Harvest</span></a>
+  <div class="navbar-links" id="navbar-links">
+    <a href="index.html">Home</a>
+    <a href="booking.html" class="active">Book Slot</a>
+    <a href="dashboard.html">Dashboard</a>
+  </div>
+  <div class="navbar-actions">
+    <div class="navbar-user">
+      <i class="fas fa-user-circle" style="color:var(--green-light);font-size:1.2rem;"></i>
+      <span id="nav-username">Loading...</span>
+    </div>
+    <button class="btn btn-danger btn-sm" id="logout-btn">
+      <i class="fas fa-sign-out-alt"></i> Logout
+    </button>
+    <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ===================== PAGE HEADER ===================== -->
+<div class="booking-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html" style="color:rgba(255,255,255,0.45)">Home</a>
+      <i class="fas fa-chevron-right" style="font-size:0.7rem;"></i>
+      <span>Book Storage Slot</span>
+    </div>
+    <h1><i class="fas fa-warehouse"></i> Book Your Smart Storage Slot</h1>
+    <p>Fill in your details, select a crop, and choose an available slot.</p>
+  </div>
+</div>
+
+<!-- ===================== MAIN CONTENT ===================== -->
+<div class="container">
+  <div class="booking-main">
+
+    <!-- ========== LEFT: BOOKING FORM ========== -->
+    <div>
+      <div class="card booking-form-card">
+        <div class="card-title"><i class="fas fa-clipboard-list"></i> Booking Details</div>
+
+        <div class="alert-box error"   id="booking-error"   role="alert"><i class="fas fa-exclamation-circle"></i><span id="booking-error-msg"></span></div>
+        <div class="alert-box warning" id="slot-warning"   role="alert"><i class="fas fa-exclamation-triangle"></i><span id="slot-warning-msg"></span></div>
+
+        <form id="booking-form" novalidate>
+          <!-- Customer info (auto-filled) -->
+          <div class="form-group">
+            <label class="form-label" for="booking-name">Customer Name</label>
+            <input class="form-control" type="text" id="cust-name" readonly placeholder="Loading..."/>
+            <input type="hidden" id="booking-name"/>
+          </div>
+          <div class="grid-2" style="gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label" for="booking-phone">Phone Number</label>
+              <input class="form-control" type="tel" id="cust-phone" readonly placeholder="Loading..."/>
+              <input type="hidden" id="booking-phone"/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="location">Location / Place</label>
+              <input class="form-control" type="text" id="location" placeholder="Village, District" required/>
+            </div>
+          </div>
+
+          <!-- Storage schedule -->
+          <div class="grid-2" style="gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label" for="start-date">Date of Storage</label>
+              <input class="form-control" type="date" id="start-date" required/>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="start-time">Preferred Time</label>
+              <input class="form-control" type="time" id="start-time" required value="09:00"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="duration-days">Storage Duration (days)</label>
+            <input class="form-control" type="number" id="duration-days" min="1" max="365" placeholder="e.g. 30" required/>
+            <div class="form-hint" id="end-date-hint"></div>
+          </div>
+
+          <!-- Crop Category -->
+          <div class="form-group">
+            <label class="form-label">Crop Category</label>
+            <div class="category-row">
+              <label class="category-radio">
+                <input type="radio" name="crop-category" value="Vegetables" id="cat-veg"/>
+                <span class="category-label">
+                  <span class="cat-emoji">🥦</span>
+                  Vegetables
+                </span>
+              </label>
+              <label class="category-radio">
+                <input type="radio" name="crop-category" value="Fruits" id="cat-fruit"/>
+                <span class="category-label">
+                  <span class="cat-emoji">🍎</span>
+                  Fruits
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Vegetables crops -->
+          <div class="form-group crop-chips-section" id="veg-section">
+            <div class="crop-chips-label">Select Vegetable</div>
+            <div class="crop-chips-grid" id="veg-chips">
+              <button type="button" class="crop-chip-btn" data-crop="Tomato">🍅 Tomato</button>
+              <button type="button" class="crop-chip-btn" data-crop="Onion">🧅 Onion</button>
+              <button type="button" class="crop-chip-btn" data-crop="Brinjal">🫆 Brinjal</button>
+              <button type="button" class="crop-chip-btn" data-crop="Potato">🥔 Potato</button>
+              <button type="button" class="crop-chip-btn" data-crop="Carrot">🥕 Carrot</button>
+              <button type="button" class="crop-chip-btn" data-crop="Beetroot">🟣 Beetroot</button>
+              <button type="button" class="crop-chip-btn" data-crop="Cabbage">🥬 Cabbage</button>
+              <button type="button" class="crop-chip-btn" data-crop="Cauliflower">🥦 Cauliflower</button>
+              <button type="button" class="crop-chip-btn" data-crop="Beans">🫘 Beans</button>
+              <button type="button" class="crop-chip-btn" data-crop="Green Chilli">🌶️ Green Chilli</button>
+              <button type="button" class="crop-chip-btn" data-crop="Other Vegetables">🌿 Other Vegetables</button>
+            </div>
+          </div>
+
+          <!-- Fruits crops -->
+          <div class="form-group crop-chips-section" id="fruit-section">
+            <div class="crop-chips-label">Select Fruit</div>
+            <div class="crop-chips-grid" id="fruit-chips">
+              <button type="button" class="crop-chip-btn" data-crop="Apple">🍎 Apple</button>
+              <button type="button" class="crop-chip-btn" data-crop="Orange">🍊 Orange</button>
+              <button type="button" class="crop-chip-btn" data-crop="Mango">🥭 Mango</button>
+              <button type="button" class="crop-chip-btn" data-crop="Grapes">🍇 Grapes</button>
+              <button type="button" class="crop-chip-btn" data-crop="Strawberry">🍓 Strawberry</button>
+              <button type="button" class="crop-chip-btn" data-crop="Banana">🍌 Banana</button>
+              <button type="button" class="crop-chip-btn" data-crop="Papaya">🧡 Papaya</button>
+              <button type="button" class="crop-chip-btn" data-crop="Pomegranate">❤️ Pomegranate</button>
+              <button type="button" class="crop-chip-btn" data-crop="Guava">💚 Guava</button>
+              <button type="button" class="crop-chip-btn" data-crop="Watermelon">🍉 Watermelon</button>
+              <button type="button" class="crop-chip-btn" data-crop="Other Fruits">🍑 Other Fruits</button>
+            </div>
+          </div>
+
+          <!-- Quantity -->
+          <div class="form-group">
+            <label class="form-label" for="quantity">Quantity</label>
+            <div class="quantity-row">
+              <input class="form-control" type="number" id="quantity" min="1" placeholder="e.g. 50" required/>
+              <select class="form-control" id="unit">
+                <option value="Kg">Kg</option>
+                <option value="Crates">Crates</option>
+                <option value="Boxes">Boxes</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Selected slot display -->
+          <div class="form-group">
+            <label class="form-label">Selected Slot</label>
+            <div id="selected-slot-display" style="padding:0.7rem 1rem;border:2px dashed var(--border);border-radius:var(--radius-sm);color:var(--text-muted);font-size:0.9rem;">
+              No slot selected — choose from the right panel
+            </div>
+            <input type="hidden" id="selected-slot-id" name="slot_id"/>
+          </div>
+
+          <button class="btn btn-primary" style="width:100%;margin-top:0.5rem;" type="submit" id="submit-booking-btn">
+            <i class="fas fa-check-circle"></i> Confirm Booking
+          </button>
+        </form>
+      </div>
+
+      <!-- My Bookings -->
+      <div class="my-bookings">
+        <div class="my-bookings-header">
+          <i class="fas fa-history" style="color:var(--green);font-size:1.2rem;"></i>
+          <h2>My Bookings</h2>
+          <button class="btn btn-outline btn-sm" onclick="loadMyBookings()">
+            <i class="fas fa-sync-alt"></i> Refresh
+          </button>
+        </div>
+        <div class="card" style="padding:0.5rem;">
+          <div id="my-bookings-container">
+            <div class="empty-state">
+              <div class="empty-icon">📦</div>
+              <h3>No bookings yet</h3>
+              <p>Your booking history will appear here.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== RIGHT: SLOT CARDS ========== -->
+    <div>
+      <div class="slots-refresh-row">
+        <div class="slots-section-title">
+          <i class="fas fa-th-large"></i> Available Storage Slots
+        </div>
+        <button class="btn-refresh" id="refresh-slots-btn" onclick="refreshSlots()">
+          <i class="fas fa-sync-alt"></i> Refresh
+        </button>
+      </div>
+
+      <!-- Slot legend -->
+      <div style="display:flex;flex-wrap:wrap;gap:0.6rem;margin-bottom:1rem;">
+        <span class="badge badge-success"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Available</span>
+        <span class="badge badge-danger"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Booked</span>
+        <span class="badge badge-warning"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Pending</span>
+        <span class="badge badge-info"><i class="fas fa-circle" style="font-size:0.5rem;"></i> Selected</span>
+      </div>
+
+      <!-- slots-container: primary ID used by booking.js -->
+      <div class="slots-grid" id="slots-container">
+        <div style="text-align:center;padding:2rem;color:var(--text-muted);">
+          <div class="spinner spinner-dark" style="margin:0 auto 0.75rem;"></div>
+          Loading slots...
+        </div>
+      </div>
+      <!-- legacy alias -->
+      <div id="slots-grid" style="display:none"></div>
+    </div>
+
+  </div><!-- /booking-main -->
+</div><!-- /container -->
+
+<!-- ===================== BOOKING CONFIRMATION MODAL ===================== -->
+<div class="modal-overlay" id="confirm-modal" role="dialog" aria-modal="true">
+  <div class="modal-box" id="confirmation-modal" style="max-width:500px;">
+    <div class="modal-header">
+      <div>
+        <div class="modal-brand" style="color:var(--green);">✅ Booking Confirmed!</div>
+        <div class="modal-tagline">Your storage slot has been reserved.</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('confirm-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="booking-id-badge" id="confirm-booking-id">SH-BOOKING-0000</div>
+      <div class="confirmation-detail">
+        <div class="row"><span class="label">Slot</span><span class="value" id="confirm-slot">—</span></div>
+        <div class="row"><span class="label">Crop</span><span class="value" id="confirm-crop">—</span></div>
+        <div class="row"><span class="label">Quantity</span><span class="value" id="confirm-qty">—</span></div>
+        <div class="row"><span class="label">Start Date</span><span class="value" id="confirm-start">—</span></div>
+        <div class="row"><span class="label">End Date</span><span class="value" id="confirm-end">—</span></div>
+        <div class="row"><span class="label">Duration</span><span class="value" id="confirm-duration">—</span></div>
+        <div class="row"><span class="label">Location</span><span class="value" id="confirm-location">—</span></div>
+        <div class="row"><span class="label">Status</span><span class="value"><span class="badge badge-success">✅ Active</span></span></div>
+      </div>
+      <button class="btn btn-primary" style="width:100%;" id="view-dashboard-btn">
+        <i class="fas fa-chart-line"></i> View Storage Dashboard
+      </button>
+      <!-- Alias ID used by booking.js -->
+      <button id="go-to-dashboard-btn" style="display:none"></button>
+      <button class="btn btn-outline" style="width:100%;margin-top:0.6rem;" onclick="closeModal('confirm-modal')">
+        Book Another Slot
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- CANCEL CONFIRM MODAL -->
+<div class="modal-overlay" id="cancel-confirm-modal" role="dialog" aria-modal="true">
+  <div class="modal-box" style="max-width:400px;">
+    <div class="cancel-modal-body">
+      <div class="warn-icon">⚠️</div>
+      <h3>Cancel Booking?</h3>
+      <p>This action cannot be undone. The slot will become available for other customers.</p>
+    </div>
+    <div class="cancel-modal-actions">
+      <button class="btn btn-danger" id="confirm-cancel-btn">
+        <i class="fas fa-times"></i> Yes, Cancel
+      </button>
+      <button class="btn btn-outline" id="abort-cancel-btn" onclick="closeModal('cancel-confirm-modal')">
+        No, Go Back
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container"></div>
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/booking.js"></script>
+</body>
+</html>

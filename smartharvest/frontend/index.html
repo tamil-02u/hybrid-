@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SmartHarvest – Smart Storage for a Better Harvest</title>
+  <meta name="description" content="IoT-Based Smart Storage System for Agricultural Crops – Monitor temperature, humidity, gas levels and control ventilation in real time."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar" id="navbar">
+  <a class="navbar-logo" href="#home">
+    🌾 Smart<span>Harvest</span>
+  </a>
+  <div class="navbar-links" id="navbar-links">
+    <a href="#home"    class="active">Home</a>
+    <a href="#about">About</a>
+    <a href="#features">Features</a>
+    <a href="#slots">Storage Slots</a>
+  </div>
+  <div class="navbar-actions">
+    <button class="btn btn-primary btn-sm" id="nav-login-btn" onclick="openModal('login-modal')">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero" id="home">
+  <div class="hero-particles" id="hero-particles"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="dot"></span>
+        IoT-Powered Agricultural Storage
+      </div>
+      <h1>Protect Your Harvest.<br><span class="highlight">Reduce Crop Loss.</span><br>Store Smarter.</h1>
+      <p class="hero-sub">
+        SmartHarvest monitors temperature, humidity, gas levels, and ventilation
+        in real time — keeping your crops fresh from farm to market.
+      </p>
+      <div class="hero-actions">
+        <button class="btn btn-primary btn-lg" onclick="openModal('signup-modal')">
+          <i class="fas fa-seedling"></i> Get Started Free
+        </button>
+        <a class="btn btn-secondary btn-lg" href="#features">
+          <i class="fas fa-play-circle"></i> View Features
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- Floating card -->
+  <div class="hero-float-card">
+    <div class="card-stat">
+      <span class="stat-num" id="hero-slots-num">5</span>
+      <div class="stat-label">Smart Storage Slots</div>
+    </div>
+    <div class="live-row">
+      <span class="status-dot online"></span>
+      Live: Sensors Active
+    </div>
+    <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.4rem;">
+      <div style="display:flex;justify-content:space-between;gap:1.5rem;font-size:0.78rem;">
+        <span style="color:rgba(255,255,255,0.5)">Avg Temp</span>
+        <span style="color:#fff;font-weight:700" id="hero-temp">24.3°C</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;gap:1.5rem;font-size:0.78rem;">
+        <span style="color:rgba(255,255,255,0.5)">Avg Humidity</span>
+        <span style="color:#fff;font-weight:700" id="hero-hum">68%</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <i class="fas fa-chevron-down"></i>
+    <span>Scroll to explore</span>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats-strip">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <span class="num" data-target="500">0</span>+
+        <div class="lbl">Farmers Registered</div>
+      </div>
+      <div class="stat-item">
+        <span class="num" data-target="5">0</span>
+        <div class="lbl">Smart Slots</div>
+      </div>
+      <div class="stat-item">
+        <span class="num" data-target="24">0</span>/7
+        <div class="lbl">Monitoring</div>
+      </div>
+      <div class="stat-item">
+        <span class="num" data-target="99">0</span>.9%
+        <div class="lbl">Uptime</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="section features" id="features">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Why SmartHarvest?</span>
+      <h2 class="section-title">Everything You Need for Smart Crop Storage</h2>
+      <p class="section-subtitle">From real-time IoT monitoring to automated ventilation — built for farmers, by technologists.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-thermometer-half"></i></div>
+        <h3>Temperature Monitoring</h3>
+        <p>Real-time temperature tracking with historical graphs and crop-specific threshold alerts to prevent spoilage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-tint"></i></div>
+        <h3>Humidity Control</h3>
+        <p>Monitor relative humidity and get notified when moisture levels deviate from the safe range for your crop type.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-wind"></i></div>
+        <h3>Gas Level Detection</h3>
+        <p>Raw gas sensor readings help detect early signs of fermentation, spoilage, or unsafe storage conditions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-fan"></i></div>
+        <h3>Ventilation Automation</h3>
+        <p>Smart fan control with Auto and Manual modes. Set thresholds and let the system manage airflow automatically.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Live Analytics</h3>
+        <p>Beautiful interactive Chart.js dashboards showing historical trends and current sensor values for each slot.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-bell"></i></div>
+        <h3>Instant Alerts</h3>
+        <p>Configurable per-crop notifications for temperature spikes, humidity extremes, device disconnection, and more.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section how-it-works" id="about">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Simple Process</span>
+      <h2 class="section-title">How It Works</h2>
+      <p class="section-subtitle">Three simple steps to protect your harvest with smart IoT technology.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-circle">1</div>
+        <h3>Register &amp; Book</h3>
+        <p>Create your account, choose a crop category, pick a storage slot, and confirm your booking online.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">2</div>
+        <h3>Store Your Crops</h3>
+        <p>Place your produce in the smart storage unit. IoT sensors begin monitoring conditions immediately.</p>
+      </div>
+      <div class="step">
+        <div class="step-circle">3</div>
+        <h3>Monitor in Real-Time</h3>
+        <p>Track live sensor data, receive alerts, control the ventilation fan, and view historical graphs anytime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CROPS ===================== -->
+<section class="section crops-section" id="slots">
+  <div class="container">
+    <div class="text-center">
+      <span class="section-tag">Supported Crops</span>
+      <h2 class="section-title">Vegetables &amp; Fruits — All Covered</h2>
+      <p class="section-subtitle">Each crop type has tailored temperature and humidity thresholds for optimal storage.</p>
+    </div>
+    <div class="crops-categories">
+      <div class="crop-category-card">
+        <div class="crop-category-header">
+          <div class="cat-icon">🥦</div>
+          <div>
+            <h3>Vegetables</h3>
+            <small style="color:var(--text-muted)">11 varieties supported</small>
+          </div>
+        </div>
+        <div class="crop-chips">
+          <span class="crop-chip">🍅 Tomato</span><span class="crop-chip">🧅 Onion</span>
+          <span class="crop-chip">🫆 Brinjal</span><span class="crop-chip">🥔 Potato</span>
+          <span class="crop-chip">🥕 Carrot</span><span class="crop-chip">🟣 Beetroot</span>
+          <span class="crop-chip">🥬 Cabbage</span><span class="crop-chip">🥦 Cauliflower</span>
+          <span class="crop-chip">🫘 Beans</span><span class="crop-chip">🌶️ Green Chilli</span>
+          <span class="crop-chip">🌿 Other Veg</span>
+        </div>
+      </div>
+      <div class="crop-category-card">
+        <div class="crop-category-header">
+          <div class="cat-icon">🍎</div>
+          <div>
+            <h3>Fruits</h3>
+            <small style="color:var(--text-muted)">11 varieties supported</small>
+          </div>
+        </div>
+        <div class="crop-chips">
+          <span class="crop-chip">🍎 Apple</span><span class="crop-chip">🍊 Orange</span>
+          <span class="crop-chip">🥭 Mango</span><span class="crop-chip">🍇 Grapes</span>
+          <span class="crop-chip">🍓 Strawberry</span><span class="crop-chip">🍌 Banana</span>
+          <span class="crop-chip">🧡 Papaya</span><span class="crop-chip">❤️ Pomegranate</span>
+          <span class="crop-chip">💚 Guava</span><span class="crop-chip">🍉 Watermelon</span>
+          <span class="crop-chip">🍑 Other Fruits</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to Protect Your Harvest?</h2>
+    <p>Join hundreds of farmers using SmartHarvest to reduce crop loss and store smarter.</p>
+    <button class="btn btn-gold btn-lg" onclick="openModal('signup-modal')">
+      <i class="fas fa-user-plus"></i> Register Now — It's Free
+    </button>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="logo">🌾 SmartHarvest</div>
+        <p>IoT-based smart storage for agricultural crops. Protect your harvest with real-time monitoring and automation.</p>
+        <div class="social-links" style="margin-top:1rem;">
+          <a href="#"><i class="fab fa-github"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="#slots">Storage Slots</a></li>
+          <li><a href="#about">How It Works</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#" onclick="openModal('login-modal')">Login</a></li>
+          <li><a href="#" onclick="openModal('signup-modal')">Register</a></li>
+          <li><a href="booking.html">Book Slot</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="#">📧 info@smartharvest.io</a></li>
+          <li><a href="#">📞 +91 98765 43210</a></li>
+          <li><a href="#">📍 AgriTech Hub, India</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 SmartHarvest. Built with ❤️ for farmers.</span>
+      <span>MIT License | IoT + Flask + Chart.js</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     MODALS
+     ============================================================ -->
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-brand">🌾 Smart<span class="brand-leaf">Harvest</span></div>
+        <div class="modal-tagline">Welcome back, farmer!</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('login-modal')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert-box error" id="login-error" role="alert">
+        <i class="fas fa-exclamation-circle"></i>
+        <span id="login-error-msg"></span>
+      </div>
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email / Login ID</label>
+          <input class="form-control" type="email" id="login-email" name="email"
+                 placeholder="your@email.com" required autocomplete="email"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="input-group">
+            <input class="form-control" type="password" id="login-password" name="password"
+                   placeholder="Enter password" required autocomplete="current-password"/>
+            <span class="input-icon" onclick="togglePw('login-password',this)">
+              <i class="fas fa-eye"></i>
+            </span>
+          </div>
+        </div>
+        <div style="text-align:right;margin-bottom:1rem;">
+          <a href="#" onclick="switchModal('login-modal','forgot-modal')" style="font-size:0.85rem;color:var(--green);">
+            Forgot Password?
+          </a>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" type="submit" id="login-btn">
+          <i class="fas fa-sign-in-alt"></i> Login
+        </button>
+      </form>
+      <div class="modal-switch">
+        Don't have an account?
+        <a href="#" onclick="switchModal('login-modal','signup-modal')">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SIGNUP MODAL -->
+<div class="modal-overlay" id="signup-modal" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-brand">🌾 Smart<span class="brand-leaf">Harvest</span></div>
+        <div class="modal-tagline">Create your free account</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('signup-modal')" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert-box error"   id="signup-error"   role="alert"><i class="fas fa-exclamation-circle"></i><span id="signup-error-msg"></span></div>
+      <div class="alert-box success" id="signup-success" role="alert"><i class="fas fa-check-circle"></i><span id="signup-success-msg"></span></div>
+      <form id="signup-form" novalidate>
+        <div class="grid-2" style="gap:0.75rem;">
+          <div class="form-group">
+            <label class="form-label" for="signup-name">Full Name</label>
+            <input class="form-control" type="text" id="signup-name" name="name" placeholder="Ravi Kumar" required/>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="signup-phone">Phone Number</label>
+            <input class="form-control" type="tel" id="signup-phone" name="phone" placeholder="+91 9876543210" required/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-email">Email / Login ID</label>
+          <input class="form-control" type="email" id="signup-email" name="email" placeholder="your@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-password">Password</label>
+          <div class="input-group">
+            <input class="form-control" type="password" id="signup-password" name="password"
+                   placeholder="Min 8 characters" required autocomplete="new-password"/>
+            <span class="input-icon" onclick="togglePw('signup-password',this)"><i class="fas fa-eye"></i></span>
+          </div>
+          <div class="pw-strength" id="password-strength">
+            <div class="pw-strength-bar"><div class="pw-strength-fill" id="pw-fill"></div></div>
+            <div class="pw-strength-label" id="pw-label"></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="signup-confirm">Confirm Password</label>
+          <div class="input-group">
+            <input class="form-control" type="password" id="signup-confirm" name="confirm_password"
+                   placeholder="Re-enter password" required autocomplete="new-password"/>
+            <!-- alias id for auth.js compatibility -->
+            <input type="hidden" id="signup-confirm-password"/>
+            <span class="input-icon" onclick="togglePw('signup-confirm',this)"><i class="fas fa-eye"></i></span>
+          </div>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" type="submit" id="signup-btn">
+          <i class="fas fa-user-plus"></i> Create Account
+        </button>
+      </form>
+      <div class="modal-switch">
+        Already have an account?
+        <a href="#" onclick="switchModal('signup-modal','login-modal')">Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORGOT PASSWORD MODAL -->
+<div class="modal-overlay" id="forgot-modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-brand">🌾 Smart<span class="brand-leaf">Harvest</span></div>
+        <div class="modal-tagline">Reset your password</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('forgot-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:1.25rem;font-size:0.9rem;">Enter your registered email. We'll send you a reset token.</p>
+      <div class="alert-box error"   id="forgot-error"   role="alert"><i class="fas fa-exclamation-circle"></i><span id="forgot-error-msg"></span></div>
+      <div class="alert-box success" id="forgot-success" role="alert"><i class="fas fa-check-circle"></i><span id="forgot-success-msg"></span></div>
+      <form id="forgot-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="forgot-email">Registered Email</label>
+          <input class="form-control" type="email" id="forgot-email" placeholder="your@email.com" required/>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" type="submit" id="forgot-btn">
+          <i class="fas fa-paper-plane"></i> Send Reset Token
+        </button>
+      </form>
+      <div style="margin-top:1rem;text-align:center;font-size:0.85rem;">
+        Have a token? <a href="#" style="color:var(--green);font-weight:600;" onclick="switchModal('forgot-modal','reset-modal')">Reset Password</a>
+      </div>
+      <div class="modal-switch">
+        <a href="#" onclick="switchModal('forgot-modal','login-modal')">← Back to Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- RESET PASSWORD MODAL -->
+<div class="modal-overlay" id="reset-modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-brand">🌾 Smart<span class="brand-leaf">Harvest</span></div>
+        <div class="modal-tagline">Enter new password</div>
+      </div>
+      <button class="modal-close" onclick="closeModal('reset-modal')">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="alert-box error"   id="reset-error"   role="alert"><i class="fas fa-exclamation-circle"></i><span id="reset-error-msg"></span></div>
+      <div class="alert-box success" id="reset-success" role="alert"><i class="fas fa-check-circle"></i><span id="reset-success-msg"></span></div>
+      <form id="reset-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="reset-token">Reset Token</label>
+          <input class="form-control" type="text" id="reset-token" placeholder="Paste token from email" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reset-pw">New Password</label>
+          <input class="form-control" type="password" id="reset-pw" placeholder="Min 8 characters" required/>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="reset-confirm">Confirm New Password</label>
+          <input class="form-control" type="password" id="reset-confirm" placeholder="Re-enter new password" required/>
+        </div>
+        <button class="btn btn-primary" style="width:100%;" type="submit" id="reset-btn">
+          <i class="fas fa-lock"></i> Reset Password
+        </button>
+      </form>
+      <div class="modal-switch">
+        <a href="#" onclick="switchModal('reset-modal','login-modal')">← Back to Login</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast container -->
+<div id="toast-container"></div>
+
+<script src="js/config.js"></script>
+<script src="js/main.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  /* Generate floating particles */
+  (function(){
+    const p = document.getElementById('hero-particles');
+    for(let i=0;i<18;i++){
+      const s = document.createElement('span');
+      s.style.cssText = `left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*8}s;width:${2+Math.random()*4}px;height:${2+Math.random()*4}px;opacity:${0.2+Math.random()*0.5}`;
+      p.appendChild(s);
+    }
+  })();
+</script>
+</body>
+</html>

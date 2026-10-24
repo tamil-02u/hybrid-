@@ -1,0 +1,38 @@
+# Render.com single-deployment config for SmartHarvest
+# Flask serves BOTH the frontend HTML and the REST API from one service.
+#
+# HOW TO USE:
+#   1. Push your code to GitHub (tamil-02u/hybrid)
+#   2. Go to https://render.com → New → Web Service
+#   3. Connect tamil-02u/hybrid repo
+#   4. Render auto-detects this file and fills the settings
+#
+# Your site URL: https://smartharvest-api.onrender.com  (or whatever name you choose)
+
+services:
+  - type: web
+    name: smartharvest-api
+    runtime: python
+    # Backend folder is the root for Python
+    rootDir: smartharvest/backend
+    buildCommand: pip install -r requirements.txt
+    # gunicorn starts Flask which serves both the API and the frontend HTML
+    startCommand: gunicorn app:app --bind 0.0.0.0:$PORT --workers 2 --timeout 120
+    plan: free
+    region: singapore     # closest to India
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEMO_MODE
+        value: "True"
+      - key: DEVICE_AUTH_TOKEN
+        value: smartharvest-device-secret-2024
+      - key: SENSOR_POLL_INTERVAL
+        value: "5"
+      - key: FLASK_DEBUG
+        value: "false"
+      # ALLOWED_ORIGINS only needed for split-deploy (Vercel + Render)
+      # For single Render deploy, leave this commented out
+      # - key: ALLOWED_ORIGINS
+      #   value: "https://hybrid-umber.vercel.app"

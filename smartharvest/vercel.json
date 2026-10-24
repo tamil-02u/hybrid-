@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "comment": "SmartHarvest vercel.json (place this if Vercel root = smartharvest/ folder)",
+  "outputDirectory": "frontend",
+  "buildCommand": "",
+  "installCommand": "",
+  "rewrites": [
+    { "source": "/booking",   "destination": "/booking.html"   },
+    { "source": "/dashboard", "destination": "/dashboard.html" },
+    { "source": "/(.*)",      "destination": "/index.html"     }
+  ]
+}

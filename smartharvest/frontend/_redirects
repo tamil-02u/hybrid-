@@ -1,0 +1,6 @@
+# Netlify _redirects file (alternative/backup to netlify.toml)
+# Place this file in the frontend/ folder
+
+/booking    /booking.html    200
+/dashboard  /dashboard.html  200
+/*          /index.html      404

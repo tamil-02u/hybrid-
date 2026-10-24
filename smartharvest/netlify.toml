@@ -1,0 +1,41 @@
+# Netlify build configuration for SmartHarvest
+# Tells Netlify that the site lives inside the frontend/ folder
+
+[build]
+  # No build command needed — pure static HTML/CSS/JS
+  publish = "frontend"
+
+# SPA-style redirects so refreshing booking.html or dashboard.html works
+[[redirects]]
+  from = "/booking"
+  to   = "/booking.html"
+  status = 200
+
+[[redirects]]
+  from = "/dashboard"
+  to   = "/dashboard.html"
+  status = 200
+
+# Catch-all: any unknown path → index.html (prevents 404 on deep links)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 404
+
+# Security / cache headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
